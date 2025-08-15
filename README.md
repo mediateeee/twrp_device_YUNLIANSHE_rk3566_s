@@ -1,14 +1,27 @@
-#
-# Copyright (C) 2025 The Android Open Source Project
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-# Android device tree for generic Generic Device (recovery_zt238)
 
-Generated automatically using TWRP Device Tree Generator
-this tool Developed by [Melek Saidani](https://www.facebook.com/no.idea.120/)
+Device Information of YUNLIANSHE AD-ZT238
+==============
 
-Arch: arm64-v8a
-Manufacturer: generic
-Model: Generic Device
+TWRP device tree for YUNLIANSHE AD-ZT238 (aka. CMCC Cloud PC )\n codename "rk3566_s"
+
+## `WORK IN PROGRESS. `
+
+## Pics
+
+![AD-ZT238](https://github.com/mediateeee/twrp_device_qibao_w701/raw/android-7.1/image.jpg)
+
+## Info
+
+| Device Name |              AD-ZT238               |
+| :---------: | :---------------------------------: |
+|     SoC     |           Rockchip rk3566           |
+|     CPU     |     Quad-core Cortex-A55@2.0GHz     |
+|     GPU     |            Mali-G52 2EE             |
+|     RAM     |               4GB RAM               |
+|    Arch     |                arm64                |
+|     ROM     |              32 GB eMMC             |
+
+
+Edited by Mediateeee at Feb.24, 2022 <br>
+Device Picture from aidriving.com
 
