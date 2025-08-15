@@ -6,5 +6,8 @@
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/omni_rk3566_s.mk
 
-COMMON_LUNCH_CHOICES := omni_rk3566_s-eng
+COMMON_LUNCH_CHOICES := \
+    omni_rk3566_s-eng \
+    omni_rk3566_s-userdebug \
+    omni_rk3566_s-user \
 
