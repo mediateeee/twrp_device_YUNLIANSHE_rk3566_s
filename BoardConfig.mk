@@ -61,7 +61,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_SUPER_PARTITION_SIZE := 3263168512
 BOARD_SUPER_PARTITION_GROUPS := main
 BOARD_MAIN_SIZE := 3263168512
-BOARD_MAIN_PARTITION_LIST := system system_ext vendor vendor_dlkm odm odm_dlkm product
+# BOARD_MAIN_PARTITION_LIST := system system_ext vendor product
 
 # AVB
 #BOARD_AVB_ENABLE := true
