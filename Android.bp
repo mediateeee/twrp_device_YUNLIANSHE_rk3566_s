@@ -4,6 +4,7 @@ android_super_image {
     partition_groups: ["main"],
     sparse: true,
     filename: "super.img",
+}
 
 android_partition_group {
     name: "main",
