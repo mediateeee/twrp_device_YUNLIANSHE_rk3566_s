@@ -14,7 +14,7 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 $(call inherit-product, device/YUNLIANSHE/rk3566_s/device.mk)
 
 PRODUCT_DEVICE := rk3566_s
-PRODUCT_NAME := rk3566_s
+PRODUCT_NAME := twrp_rk3566_s
 PRODUCT_BRAND := YUNLIANSHE
 PRODUCT_MODEL := AD-ZT238
 PRODUCT_MANUFACTURER := AIDRIVING
