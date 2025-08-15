@@ -3,7 +3,6 @@ android_super_image {
     name: "super",
     partition_groups: ["main"],
     sparse: true,
-    filename: "super.img",
 }
 
 android_partition_group {
