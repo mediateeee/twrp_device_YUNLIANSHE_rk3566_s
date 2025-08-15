@@ -1,0 +1,99 @@
+// ===== 1. 动态分区核心配置 =====
+android_super_image {
+    name: "super",
+    partition_groups: ["main"],
+    sparse: true,
+}
+
+android_partition_group {
+    name: "main",
+    size: 3263168512,  //3GB
+    partitions: [
+        "system",
+        "system_ext",
+        "vendor",
+        "product",
+    ],
+}
+
+// ===== 2. 分区镜像定义 =====
+android_system_image {
+    name: "system",
+    fs_type: "ext4",
+    mount_point: "system",
+}
+
+android_vendor_image {
+    name: "vendor",
+    fs_type: "ext4",
+    mount_point: "vendor",
+}
+
+android_system_ext_image {
+    name: "system_ext",
+    fs_type: "ext4",
+}
+
+android_product_image {
+    name: "product",
+    fs_type: "ext4",
+}
+
+// ===== 3. 预编译内核和DTB =====
+android_prebuilt {
+    name: "kernel",
+    src: "device/YUNLIANSHE/rk3566_s/prebuilt/kernel",
+    target_arch: "arm64",
+}
+
+android_prebuilt {
+    name: "dtb",
+    src: "device/YUNLIANSHE/rk3566_s/prebuilt/dtb.img",
+}
+
+android_prebuilt {
+    name: "dtbo",
+    src: "device/YUNLIANSHE/rk3566_s/prebuilt/dtbo.img",
+    recovery_available: true,
+}
+
+// ===== 4. TWRP专属配置 =====
+cc_binary {
+    name: "recovery",
+    recovery: true,
+    srcs: [
+        "bootable/recovery/**/*.cpp",
+    ],
+    shared_libs: [
+        "libtwrp",
+        "libfs_mgr",  // 动态分区挂载关键库
+        "libfstab",
+    ],
+    cflags: [
+        "-DHAVE_DYNAMIC_PARTITIONS",  // 启用动态分区支持
+        "-DRK3566",  // 设备标识
+    ],
+}
+
+// ===== 5. 文件系统工具（确保TWRP能操作ext4/f2fs） =====
+cc_prebuilt_binary {
+    name: "make_f2fs",
+    src: "external/e2fsprogs/misc/make_f2fs",
+    recovery_available: true,
+}
+
+cc_prebuilt_binary {
+    name: "fsck.f2fs",
+    src: "external/e2fsprogs/misc/fsck.f2fs",
+    recovery_available: true,
+}
+
+// ===== 6. AVB兼容（如需启用） =====
+// android_vbmeta_image {
+//     name: "vbmeta",
+//     include_descriptors_from_images: ["system", "vendor"],
+//     signing_args: [
+//         "--algorithm SHA256_RSA2048",
+//         "--key external/avb/testkey.pem",  // 替换为你的密钥路径
+//     ],
+// }
