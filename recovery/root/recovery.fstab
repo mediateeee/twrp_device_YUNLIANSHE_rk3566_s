@@ -1,7 +1,11 @@
-# Android fstab file for TWRP
-#<src>  <mnt_point>  <type>  <mnt_flags>  <fs_mgr_flags>
-/dev/block/by-name/system  /system  ext4  defaults  defaults
-/dev/block/by-name/cache  /cache  ext4  defaults  defaults
-/dev/block/by-name/userdata  /data  f2fs  defaults  defaults
-/dev/block/by-name/boot  /boot  emmc  defaults  defaults
-/dev/block/by-name/recovery  /recovery  emmc  defaults  defaults
+# Android fstab file for TWRP 
+#<src>                                   <mnt_point>  <type>  <mnt_flags>         <fs_mgr_flags>
+/dev/block/by-name/system    /system      ext4    ro,barrier=1        wait,logical
+/dev/block/by-name/system_ext  /system_ext  ext4    ro,barrier=1  wait,logical
+/dev/block/by-name/vendor    /vendor      ext4    ro,barrier=1        wait,logical
+/dev/block/by-name/product   /product     ext4    ro,barrier=1        wait,logical
+/dev/block/by-name/userdata  /data        f2fs    noatime,nosuid      wait,check,encryptable=footer
+/dev/block/by-name/cache     /cache       ext4    noatime,nosuid      wait,check
+/dev/block/by-name/metadata  /metadata    ext4    noatime,nosuid      wait,formattable
+/dev/block/by-name/boot      /boot        emmc    defaults            defaults
+/dev/block/by-name/recovery  /recovery    emmc    defaults            defaults
