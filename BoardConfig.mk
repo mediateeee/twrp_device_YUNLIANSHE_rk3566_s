@@ -16,11 +16,11 @@ TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a55
 TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
-#TARGET_2ND_ARCH := arm
-#TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-#TARGET_2ND_CPU_ABI := armeabi-v7a
-#TARGET_2ND_CPU_ABI2 := armeabi
-#TARGET_2ND_CPU_VARIANT := cortex-a55
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-2a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a55
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := rk3566_s
@@ -35,11 +35,22 @@ TARGET_SCREEN_DENSITY := 480
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 3
 BOARD_KERNEL_BASE := 0x10000000
+#BOARD_KERNEL_CMDLINE := \
+    console=ttyFIQ0 \
+    androidboot.selinux=permissive \
+    androidboot.hardware=rk30board \
+    androidboot.boot_devices=fe310000.sdhci,fe330000.nandc \
+    firmware_class.path=/vendor/etc/firmware \
+    init=/init \
+    rootwait ro \
+    loop.max_part=7
 BOARD_KERNEL_CMDLINE := console=ttyFIQ0 firmware_class.path=/vendor/etc/firmware init=/init rootwait ro loop.max_part=7 usbcore.autosuspend=-1 androidboot.console=ttyFIQ0 androidboot.wificountrycode=CN androidboot.hardware=rk30board androidboot.boot_devices=fe310000.sdhci,fe330000.nandc androidboot.selinux=permissive androidboot.console=ttyFIQ0 androidboot.wificountrycode=CN androidboot.hardware=rk30board androidboot.boot_devices=fe310000.sdhci,fe330000.nandc androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_KERNEL_IMAGE_NAME := Image
+
+# Kernel prebuilt
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
@@ -47,7 +58,11 @@ TARGET_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 BOARD_PREBUILT_DTBIMAGE := $(TARGET_PREBUILT_DTB)
 BOARD_PREBUILT_DTBOIMAGE := $(TARGET_PREBUILT_DTBOIMAGE)
 BOARD_KERNEL_IMAGE := $(TARGET_PREBUILT_KERNEL)
-#BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_MKBOOTIMG_ARGS += --dtb $(DEVICE_PATH)/prebuilt/dtb.img
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -81,6 +96,11 @@ BOARD_MAIN_PARTITION_LIST := system system_ext vendor product
 #BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA2048
 #BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 #BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 3
+
+# Rockchip
+#BOARD_ROCKCHIP_DTB_EMBED := true
+#BOARD_KERNEL_SEPARATED_DTBO := true
+BOARD_ROCKCHIP_DTB_PATH := $(DEVICE_PATH)/prebuilt/dtb.img
 
 # Platform
 TARGET_BOARD_PLATFORM := rk356x
