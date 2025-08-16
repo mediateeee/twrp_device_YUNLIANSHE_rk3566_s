@@ -33,7 +33,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_SCREEN_DENSITY := 480
 
 # Kernel
-BOARD_BOOTIMG_HEADER_VERSION := 2
+BOARD_BOOTIMG_HEADER_VERSION := 3
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_CMDLINE := console=ttyFIQ0 firmware_class.path=/vendor/etc/firmware init=/init rootwait ro loop.max_part=7 usbcore.autosuspend=-1 androidboot.console=ttyFIQ0 androidboot.wificountrycode=CN androidboot.hardware=rk30board androidboot.boot_devices=fe310000.sdhci,fe330000.nandc androidboot.selinux=permissive androidboot.console=ttyFIQ0 androidboot.wificountrycode=CN androidboot.hardware=rk30board androidboot.boot_devices=fe310000.sdhci,fe330000.nandc androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
@@ -43,14 +43,11 @@ BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
-#TARGET_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+TARGET_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 BOARD_PREBUILT_DTBIMAGE := $(TARGET_PREBUILT_DTB)
-#BOARD_PREBUILT_DTBOIMAGE := $(TARGET_PREBUILT_DTBOIMAGE)
+BOARD_PREBUILT_DTBOIMAGE := $(TARGET_PREBUILT_DTBOIMAGE)
 BOARD_KERNEL_IMAGE := $(TARGET_PREBUILT_KERNEL)
 #BOARD_INCLUDE_RECOVERY_DTBO := true
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/prebuilt/dtb.img:out/target/product/rk3566_s/dtb.img \
-	$(DEVICE_PATH)/prebuilt/kernel:out/target/product/rk3566_s/kernel
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072

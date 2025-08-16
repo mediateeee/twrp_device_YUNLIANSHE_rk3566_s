@@ -16,8 +16,7 @@ ALLOW_MISSING_DEPENDENCIES := true
 
 # Cpoy prebuilt stuffs
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/dtb.img:out/target/product/rk3566_s/dtb.img \
-	$(LOCAL_PATH)/prebuilt/kernel:out/target/product/rk3566_s/kernel
-	
-#	$(DEVICE_PATH)/prebuilt/dtbo.img:out/target/product/rk3566_s/dtbo.img \
+    $(LOCAL_PATH)/prebuilt/dtb.img:$(TARGET_COPY_OUT_RECOVERY)/dtb.img \
+	$(LOCAL_PATH)/prebuilt/kernel:$(TARGET_COPY_OUT_RECOVERY)/kernel
+	$(DEVICE_PATH)/prebuilt/dtbo.img:$(TARGET_COPY_OUT_RECOVERY)/dtbo.img \
 
