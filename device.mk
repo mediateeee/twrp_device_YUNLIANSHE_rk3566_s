@@ -19,3 +19,5 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/dtb.img:$(TARGET_COPY_OUT_RECOVERY)/dtb.img \
 	$(LOCAL_PATH)/prebuilt/dtbo.img:$(TARGET_COPY_OUT_RECOVERY)/dtbo.img \
 	$(LOCAL_PATH)/prebuilt/kernel:$(TARGET_COPY_OUT_RECOVERY)/kernel
+
+PRODUCT_POST_PROCESS += device/YUNLIANSHE/rk3566_s/hooks/post_dtb_copy.sh
